@@ -1,0 +1,40 @@
+<section class="container">
+    <header class="page-header page-header--row">
+        <h1>Usuarios</h1>
+        <span class="text-muted">{{users().length}} usuarios</span>
+    </header>
+
+    <div class="table-wrapper">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Rol</th>
+                    <th class="table__actions">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (u of users(); track $index) {
+                    <tr>
+                        <td>
+                            <div class="user">
+                                <span class="user__avatar">{{ u.name.charAt(0) }}</span>
+                                <span class="user__name">{{ u.name }}</span>
+                            </div>
+                        </td>
+                        <td>{{ u.email }}</td>
+                        <td>
+                            <span class="badge" [class.badge--primary]="u.role === 'admin'">
+                                {{ u.role }}
+                            </span>
+                        </td>
+                        <td class="table__actions">
+                            <button class="btn btn--primary btn--sm" type="button" (click)="changeRole(u._id, u.role)">Cambiar role</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>
